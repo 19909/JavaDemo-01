@@ -16,7 +16,7 @@ public class Demo03 {
         double b = 20.0;
 
         //小范围向大范围转换 （自动转换）
-        double s = (double) a;
+        double s = a;
 
         //大范围向小范围转换 （手动转换）
         int t = (int) b;
