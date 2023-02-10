@@ -42,12 +42,16 @@ public class Demo04 {
         System.out.println("请输入一个年份：");
         Scanner scanner = new Scanner(System.in);
         int year = scanner.nextInt();
-        //获取到输入的年份
-        LocalDate ofYear = LocalDate.of(year, 1, 1);
-        if (ofYear.isLeapYear()) {
-            System.out.println("你输入的" + ofYear.getYear() + "年是闰年！");
+        if (year<=0){
+            throw new RuntimeException("输入的年份不合法！");
         }else {
-            System.out.println("你输入的" + ofYear.getYear() + "年不是闰年！");
+            //获取到输入的年份
+            LocalDate ofYear = LocalDate.of(year, 1, 1);
+            if (ofYear.isLeapYear()) {
+                System.out.println("你输入的" + ofYear.getYear() + "年是闰年！");
+            }else {
+                System.out.println("你输入的" + ofYear.getYear() + "年不是闰年！");
+            }
         }
     }
 
@@ -55,10 +59,10 @@ public class Demo04 {
         Demo04 demo04 = new Demo04();
 
         //计算2023-1-1 这一天是星期几？
-        demo04.calculate();
+        //demo04.calculate();
 
         //计算两个日期之间有多少天？
-        demo04.betweenAAndB();
+        //demo04.betweenAAndB();
 
         //给定一个年份判断是否是闰年！！
         demo04.leapYear();

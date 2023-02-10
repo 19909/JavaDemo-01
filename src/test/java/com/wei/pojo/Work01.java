@@ -3,12 +3,15 @@ package com.wei.pojo;
 import org.junit.Test;
 
 import javax.swing.*;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.HijrahDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
@@ -16,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.SimpleTimeZone;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author ChenHeWei
@@ -26,7 +30,7 @@ import java.util.SimpleTimeZone;
  * @Version 1.0
  */
 
-public class work01 {
+public class Work01 {
 
     /**     Date工具包
      * 在JDK 1.1之前， Date有两个附加功能。 它允许将日期解释为年，月，日，小时，分钟和第二个值。 它还允许格式化和解析日期字符串。
@@ -128,6 +132,13 @@ public class work01 {
         System.out.println(dayOfWeek.getDisplayName(TextStyle.FULL, Locale.CHINA));
         System.out.println(dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.CHINA));
 
+        int year = of.getDayOfYear();   //获取当前日期在这一年中的第几天
+        int dayOfMonth = of.getDayOfMonth();    //获取当前日期在当前月中的第几天
+        System.out.println(year + "------" + dayOfMonth);
+        //获取当前日期在一周中的周几。
+        String displayName = of.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.CHINESE);
+        System.out.println(displayName);
+
         System.out.println(of.isLeapYear());//判断当前年份是否是闰年
     }
 
@@ -213,25 +224,67 @@ public class work01 {
         System.out.println(localDateTime);      //2023-02-09T19:37:17.570
         System.out.println(localDateTime.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH时mm分ss秒"))); //2023年02月09日 19时38分42秒 (格式化输出)
     }
+
+    //数字格式化
+    @Test
+    public void test8(){
+        //格式化百分比
+        double random = 0.2234;
+        System.out.println(random);
+        System.out.printf("格式化：%.2f%n",random);
+
+        NumberFormat numberFormat = NumberFormat.getPercentInstance();
+        String s = numberFormat.format(random);
+        System.out.println(s);
+        //
+        numberFormat.setMinimumFractionDigits(2);  //设置百分比后面的小数位
+        String s1 = numberFormat.format(random);
+        System.out.println(s1);
+
+        numberFormat.setMinimumIntegerDigits(2);
+        System.out.println(numberFormat.format(random));    //
+
+        NumberFormat percentInstance = NumberFormat.getPercentInstance(Locale.CHINA);
+        String format = percentInstance.format(random);
+        System.out.println(format);
+    }
+
+    @Test
+    public void test9(){
+        //格式化小数位
+        double random = Math.random();
+        System.out.println(random);
+        NumberFormat percentInstance = NumberFormat.getPercentInstance();
+
+        //00,025.74%
+        percentInstance.setMinimumFractionDigits(2);
+//        percentInstance.setMinimumIntegerDigits(5); //设置百分数位数的，1代表百分数的个位，2十位，3百位
+        System.out.println(percentInstance.format(random));
+
+        //格式化货币
+        /**
+         *  NumberFormat.getCurrencyInstance(Locale.US);            获取美国的货币对象
+         *
+         *  NumberFormat.getCurrencyInstance(Locale.CHINA);         获取中国的货币对象
+         *
+         *  NumberFormat.getCurrencyInstance();                     在中国地区默认是中国的货币对象
+         */
+        NumberFormat currencyInstance = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        String money = currencyInstance.format(random);
+        System.out.println(money);
+
+        NumberFormat instance = NumberFormat.getCurrencyInstance(Locale.US);
+        String format1 = instance.format(random);
+        System.out.println(format1);
+
+        //格式化千分位
+        double s = 4567913516513123L;
+        NumberFormat numberInstance = NumberFormat.getNumberInstance(Locale.CHINA);
+        String format = numberInstance.format(s);
+        System.out.println(format);
+
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
