@@ -1,8 +1,6 @@
 package com.wei.pojo;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @Author ChenHeWei
@@ -15,9 +13,16 @@ import java.util.Date;
  */
 public class Demo05 {
     public static void main(String[] args) {
+
+/*        int hours = new Date().getHours();
+        System.out.println(hours);
+        System.out.println("------");
+
+        int i = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        System.out.println(i);*/
         //获取当前时间的小时部分
         int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        System.out.println(h);
+        System.out.println("当前时间为 ： " + h + "时");
             //0-5凌晨   5-8早上    8-11上午   11-14中午   14-18下午   18-24晚上   24=0 凌晨
             if (h == 24){
                 System.out.println("凌晨好！");
