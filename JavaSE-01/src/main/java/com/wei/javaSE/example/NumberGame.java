@@ -15,14 +15,18 @@ import java.util.Scanner;
 public class NumberGame {
 
     public void numberGameMather(){
+
+        while (true){
         System.out.println("请输入0-10之间的数字：");
         Scanner scanner = new Scanner(System.in);
         int nextInt = scanner.nextInt();
         int X = 6;
         if (nextInt == X){
-            System.out.println("恭喜你猜中了");
+            System.out.printf("\033[31m恭喜你猜中了\033[0m%n");
+            break;
         }else {
-            System.out.println("很遗憾，你没有猜中了");
+            System.out.printf("\033[34m很遗憾，你没有猜中了\033[0m%n");
+        }
         }
     }
 
