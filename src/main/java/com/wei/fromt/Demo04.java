@@ -42,7 +42,7 @@ public class Demo04 {
         System.out.println("请输入一个年份：");
         Scanner scanner = new Scanner(System.in);
         int year = scanner.nextInt();
-        if (year<=0){
+        if (year<=0 || year>Integer.MAX_VALUE){
             throw new RuntimeException("输入的年份不合法！");
         }else {
             //获取到输入的年份
