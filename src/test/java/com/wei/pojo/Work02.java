@@ -46,7 +46,7 @@ public class Work02 {
         int[] array = {10,7,9,11,5,16,49,34};
         System.out.println("原数组："+Arrays.toString(array));
         for (int i = 0; i < array.length ; i++){
-            for (int j = 0; j<array.length - 1; j++){
+            for (int j = 0; j<array.length - 1 - i; j++){
                 if (array[j] > array[j+1]){
                     int temp = array[j];
                     array[j] = array[j+1];
