@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>JavaSE-01</module>
+        <module>JavaSE-02</module>
     </modules>
 
     <properties>
